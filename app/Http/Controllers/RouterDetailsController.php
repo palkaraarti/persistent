@@ -16,6 +16,7 @@ class RouterDetailsController extends Controller
     public function __construct(){
         $this->_routerdetails = new RouterDetails();
     }
+    
     /**
      * Display a listing of the resource.
      *

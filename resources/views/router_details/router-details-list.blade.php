@@ -43,10 +43,10 @@
                             @if(isset($finalData) && !empty($finalData))
                                 @foreach($finalData as $route)
                                     <tr id="{{$i}}">
-                                        <td ondblclick="edit(this)"><input type="text"  name="sapid[]"  value="{{ $route['sapid'] }}" required="required"></td>
-                                        <td ondblclick="edit(this)"><input type="text" name="hostname[]" value="{{ $route['hostname'] }}" required="required"></td>
-                                        <td ondblclick="edit(this)"><input type="text" name="loopback[]" value="{{ $route['loopback'] }}" required="required"></td>
-                                        <td ondblclick="edit(this)"><input type="text" name="macaddress[]" value="{{ $route['macaddress'] }}" required="required"></td>
+                                        <td ondblclick="edit(this)"><input type="text"  name="sapid[]"  value="{{ $route['sapid'] }}" required="required" onblur="disable(this)"></td>
+                                        <td ondblclick="edit(this)"><input type="text" name="hostname[]" value="{{ $route['hostname'] }}" required="required"  onblur="disable(this)"></td>
+                                        <td ondblclick="edit(this)"><input type="text" name="loopback[]" value="{{ $route['loopback'] }}" required="required"  onblur="disable(this)"></td>
+                                        <td ondblclick="edit(this)"><input type="text" name="macaddress[]" value="{{ $route['macaddress'] }}" required="required"  onblur="disable(this)"></td>
                                         <td><button type="button" class="btn btn-danger delete-row" id="deleteButton">Delete</button></td>
                                     </tr>
                                     <?php $i++; ?>
@@ -63,9 +63,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="/path/to/cdn/jquery.slim.min.js"></script>
-<script src="/path/to/jquery.prevent-duplicate-submit.js"></script>
-
 <script>
 
 function changeColor(){
@@ -93,8 +90,9 @@ function changeColor(){
                        
                        
                             var areEqual = $(ids).find('td').eq(tdCount).children().val().toUpperCase() === $(allTd).find('td').eq(tdCount).children().val().toUpperCase();
+                           
                             if(!areEqual) {
-                               
+                                console.log(areEqual);
                                 isDuplicate = true;
                                 break;
                             }
